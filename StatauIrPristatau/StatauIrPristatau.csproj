@@ -221,6 +221,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Admin\MainAdminController.cs" />
+    <Compile Include="Controllers\Admin\RegistrationController.cs" />
     <Compile Include="Controllers\User\LoginController.cs" />
     <Compile Include="Controllers\User\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
@@ -276,6 +277,8 @@
     <Content Include="Views\User\Register\Register.cshtml" />
     <Content Include="Views\Shared\MainView.cshtml" />
     <Content Include="Views\Admin\MainAdmin\UserView.cshtml" />
+    <Content Include="Views\Admin\Registration\RegistrationScreen.cshtml" />
+    <Content Include="Views\Admin\MainAdmin\EditView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

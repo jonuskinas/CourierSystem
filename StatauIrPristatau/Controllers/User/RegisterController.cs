@@ -28,11 +28,18 @@ namespace StatauIrPristatau.Controllers
                 {
                     db.userAccount.Add(account);
                     db.SaveChanges();
+                    Session["UserId"] = account.Id.ToString();
+                    Session["UserName"] = account.Name.ToString();
+                    Session["Surname"] = account.Surname.ToString();
+                    ModelState.Clear();
+                    if (Session["UserId"] != null)
+                    {
+                        return View("~/Views/Shared/MainView.cshtml", db.userAccount.ToList());
+                    }
                 }
-                ModelState.Clear();
-                ViewBag.Message = account.Name + " " + account.Surname + " Sėkmingai užregistruotas";
             }
             return View("~/Views/User/Register/Register.cshtml");
         }
+
     }
 }

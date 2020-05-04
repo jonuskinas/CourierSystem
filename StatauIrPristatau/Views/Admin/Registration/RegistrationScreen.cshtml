@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    @using (Html.BeginForm("Register", "Register"))
+    @using (Html.BeginForm("Registration", "Registration"))
     {
         @Html.AntiForgeryToken()
         <div>
@@ -109,16 +109,10 @@
                             </div>
                         </div>
                         <div class="text-center mt-3">
-                            <button type="submit" class="btn" style="background-color: #c0392b; color: white;">Registruotis</button>
-                        </div>
-
-                        <div class="mt-4">
-                            <div class="d-flex justify-content-center links">
-                                Turite paskyra? @Html.ActionLink(" Prisijungti", "Login")
-                            </div>
+                            <button type="submit" class="btn" style="background-color: #c0392b; color: white;">Registruoti naują vartotoją</button>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
