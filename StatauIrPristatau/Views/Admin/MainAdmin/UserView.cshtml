@@ -69,9 +69,9 @@
                 </div>
             </div>
             <div class="mt-4 text-center">
-                <a class="btn" style="background-color: #c0392b; color: white;" href="adminEditUser.html">Redaguoti</a>
+                @Html.ActionLink("Redaguoti", "Edit", "MainAdmin", new { id = Model.Id }, new { @class = "btn", @style = "background-color: #c0392b; color: white;" })
                 <a class="btn ml-4" style="background-color: #c0392b; color: white;" data-toggle="modal" data-target="#confirmDelete">Ištrinti</a>
-                <a class="ml-4" href="admin.html">Sugrįžti į sąrašą</a>
+                @Html.ActionLink("Sugrižti į sąrašą", "ToMainView", "MainAdmin", new { id = Model.Id })
             </div>
         </div>
 
@@ -85,16 +85,12 @@
                         </button>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn" style="background-color: #c0392b; color: white;">Patvirtinti</button>
+                        @Html.ActionLink("Patvirtinti", "Delete", "MainAdmin", new { id = Model.Id }, new { @class = "btn", @style = "background-color: #c0392b; color: white;" })
                         <button type="button" class="btn" data-dismiss="modal">Atgal</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
 </body>
 </html>

@@ -47,7 +47,7 @@
                 <h3>Naudotojų sąrašas</h3>
             </div>
             <div>
-                <a class="btn px-4 py-2 mb-4 mt-2" style="background-color: #c0392b; color: white;" href="#">Sukurti nauja naudotoja</a>
+                @Html.ActionLink("Sukurti naują naudotoją", "Registration", "MainAdmin", null, new { @class = "btn px-4 py-2 mb-4 mt-2", @style = "background-color: #c0392b; color: white;" })
             </div>
             <table class="table">
                 <thead>
@@ -81,9 +81,6 @@
             </table>
         </div>
     </div>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
 }
 
 </body>

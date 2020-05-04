@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StatauIrPristatau.Models
 {
     public class User
     {
-        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required(ErrorMessage ="Vardas yra būtinas laukas!")]
         [DisplayName("Vardas")]
@@ -20,6 +21,7 @@ namespace StatauIrPristatau.Models
         [DisplayName("E-pašto adresas")]
         [Required(ErrorMessage = "E-paštas yra būtinas laukas!")]
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")]
+        [Key]
         public string Email { get; set; }
         [DisplayName("Slaptažodis")]
         [Required(ErrorMessage = "Slaptažodis būtinas!")]
