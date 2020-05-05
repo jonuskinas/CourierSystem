@@ -16,11 +16,11 @@ namespace StatauIrPristatau.Controllers.Admin
                 if (Session["UserId"] != null)
                 {
                     var usr = db.userAccount.Single(u => u.Id == Id);
-                    return View("~/Views/Admin/MainAdmin/UserView.cshtml", usr);
+                    return View("~/Views/Admin/UserView.cshtml", usr);
                 }
                 else
                 {
-                    return View("~/Views/User/Login/Login.cshtml");
+                    return View("~/Views/User/Login.cshtml");
                 }
 
             }
@@ -56,7 +56,7 @@ namespace StatauIrPristatau.Controllers.Admin
                 if (Session["UserId"] != null)
                 {
                     var usr = db.userAccount.Single(u => u.Id == Id);
-                    return View("~/Views/Admin/MainAdmin/EditView.cshtml", usr);
+                    return View("~/Views/Admin/EditView.cshtml", usr);
                 }
                 else
                 {
@@ -81,7 +81,7 @@ namespace StatauIrPristatau.Controllers.Admin
         [Route("Registration")]
         public ActionResult Registration()
         {
-            return View("~/Views/Admin/Registration/RegistrationScreen.cshtml");
+            return View("~/Views/Admin/RegistrationScreen.cshtml");
         }
 
 

@@ -12,12 +12,12 @@ namespace StatauIrPristatau.Controllers
         [Route("Register")]
         public ActionResult Register()
         {
-            return View("~/Views/User/Register/Register.cshtml");
+            return View("~/Views/User/Register.cshtml");
         }
         [Route("Login")]
         public ActionResult Login()
         {
-            return View("~/Views/User/Login/Login.cshtml");
+            return View("~/Views/User/Login.cshtml");
         }
         [HttpPost]
         public ActionResult Register(User account)
@@ -38,7 +38,7 @@ namespace StatauIrPristatau.Controllers
                     }
                 }
             }
-            return View("~/Views/User/Register/Register.cshtml");
+            return View("~/Views/User/Register.cshtml");
         }
 
     }
