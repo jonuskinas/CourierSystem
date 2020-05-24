@@ -12,12 +12,12 @@ namespace StatauIrPristatau.Controllers
         [Route("Register")]
         public ActionResult Register()
         {
-            return View("~/Views/User/Register/Register.cshtml");
+            return View("~/Views/User/Register.cshtml");
         }
         [Route("Login")]
         public ActionResult Login()
         {
-            return View("~/Views/User/Login/Login.cshtml");
+            return View("~/Views/User/Login.cshtml");
         }
         [HttpPost]
         public ActionResult Register(User account)
@@ -28,7 +28,7 @@ namespace StatauIrPristatau.Controllers
                 {
                     db.userAccount.Add(account);
                     db.SaveChanges();
-                    Session["UserId"] = account.Id.ToString();
+                    Session["UserId"] = account.Id;
                     Session["UserName"] = account.Name.ToString();
                     Session["Surname"] = account.Surname.ToString();
                     ModelState.Clear();
@@ -36,9 +36,13 @@ namespace StatauIrPristatau.Controllers
                     {
                         return View("~/Views/Shared/MainView.cshtml", db.userAccount.ToList());
                     }
+                    else
+                    {
+                        return View("~/Views/User/Register.cshtml");
+                    }
                 }
             }
-            return View("~/Views/User/Register/Register.cshtml");
+            return View("~/Views/User/Register.cshtml");
         }
 
     }

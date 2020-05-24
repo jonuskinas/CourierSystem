@@ -13,12 +13,12 @@ namespace StatauIrPristatau.Controllers
         [Route("Login")]
         public ActionResult Login()
         {
-            return View("~/Views/User/Login/Login.cshtml");
+            return View("~/Views/User/Login.cshtml");
         }
         [Route("Register")]
         public ActionResult Register()
         {
-            return View("~/Views/User/Register/Register.cshtml");
+            return View("~/Views/User/Register.cshtml");
         }
         [HttpPost]
         public ActionResult Login(User user)
@@ -28,7 +28,7 @@ namespace StatauIrPristatau.Controllers
                 var usr = db.userAccount.Single(u => u.Email == user.Email && u.Password == user.Password);
                 if (usr != null)
                 {
-                    Session["UserId"] = usr.Id.ToString();
+                    Session["UserId"] = usr.Id;
                     Session["UserName"] = usr.Name.ToString();
                     Session["Surname"] = usr.Surname.ToString();
                     return RedirectToAction("MainView");
@@ -38,7 +38,7 @@ namespace StatauIrPristatau.Controllers
                     ModelState.AddModelError("", "E-pašto adresas arba slaptažodis neteisingi");
                 }
             }
-            return View("~/Views/User/Login/Login.cshtml");
+            return View("~/Views/User/Login.cshtml");
         }
 
         public ActionResult MainView()
