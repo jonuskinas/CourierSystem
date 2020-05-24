@@ -220,8 +220,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Content\Enums.cs" />
     <Compile Include="Controllers\Admin\MainAdminController.cs" />
+    <Compile Include="Controllers\Admin\RegistrationController.cs" />
+    <Compile Include="Controllers\Customer\CustomerController.cs" />
+    <Compile Include="Controllers\Customer\PriceController.cs" />
+    <Compile Include="Helpers\HtmlExtentions.cs" />
     <Compile Include="Controllers\User\LoginController.cs" />
+    <Compile Include="Controllers\User\MainUserController.cs" />
     <Compile Include="Controllers\User\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -230,8 +236,14 @@
     <Compile Include="Migrations\202005021842509_InitialCreate.designer.cs">
       <DependentUpon>202005021842509_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005201201073_Orders.cs" />
+    <Compile Include="Migrations\202005201201073_Orders.designer.cs">
+      <DependentUpon>202005201201073_Orders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DbContext.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Parcel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -249,11 +261,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <Content Include="Scripts\johny.js" />
+    <None Include="Scripts\jquery-3.5.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.5.1.js" />
+    <Content Include="Scripts\jquery-3.5.1.min.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.5.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -261,6 +277,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Content\style.css" />
+    <Content Include="Views\Customer\OrderShipmentView.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -272,10 +289,15 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\User\Login\Login.cshtml" />
-    <Content Include="Views\User\Register\Register.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Shared\MainView.cshtml" />
-    <Content Include="Views\Admin\MainAdmin\UserView.cshtml" />
+    <Content Include="Views\Admin\UserView.cshtml" />
+    <Content Include="Views\Admin\RegistrationScreen.cshtml" />
+    <Content Include="Views\Admin\EditView.cshtml" />
+    <Content Include="Views\User\OrderView.cshtml" />
+    <Content Include="Views\Customer\ShipmentsView.cshtml" />
+    <Content Include="Views\Customer\addParcelView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -290,12 +312,13 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202005021842509_InitialCreate.resx">
       <DependentUpon>202005021842509_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005201201073_Orders.resx">
+      <DependentUpon>202005201201073_Orders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

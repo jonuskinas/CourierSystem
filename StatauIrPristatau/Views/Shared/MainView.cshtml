@@ -33,7 +33,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav" style="margin-left: auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Naudotojų sąrašas</a>
+                            @Html.ActionLink("Naudotojų sąrašas", "ToMainView", "MainAdmin", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item active">
+                            @Html.ActionLink("Užsakymų istorija", "openOrderHistory", "MainUser", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item active">
+                            @Html.ActionLink("Vykdomi užsakymai", "openOrderedShipments", "Customer", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#">Atsijungti</a>
@@ -47,7 +53,7 @@
                 <h3>Naudotojų sąrašas</h3>
             </div>
             <div>
-                <a class="btn px-4 py-2 mb-4 mt-2" style="background-color: #c0392b; color: white;" href="#">Sukurti nauja naudotoja</a>
+                @Html.ActionLink("Sukurti naują naudotoją", "Registration", "MainAdmin", null, new { @class = "btn px-4 py-2 mb-4 mt-2", @style = "background-color: #c0392b; color: white;" })
             </div>
             <table class="table">
                 <thead>
@@ -81,9 +87,6 @@
             </table>
         </div>
     </div>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
 }
 
 </body>
