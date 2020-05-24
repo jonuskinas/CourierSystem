@@ -121,25 +121,10 @@
                                 </div>
                             </div>
                             <div>
-                                <a class="btn" style="background-color: #c0392b; color: white;" data-toggle="modal" data-target="#confirmEdit">Redaguoti</a>
+                                <button type="submit" class="btn" style="background-color: #c0392b; color: white;">Patvirtinti</button>
                                 @Html.ActionLink("Sugrižti į sąrašą", "ToMainView", "MainAdmin", new { id = Model.Id })
                             </div>
-                            <div class="modal fade" id="confirmEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Ar tikrai norite išsaugoti pakeitimus?</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Atgal">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn" style="background-color: #c0392b; color: white;">Patvirtinti</button>
-                                            <button type="button" class="btn" data-dismiss="modal">Atgal</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        
                         </div>
 
                     </div>

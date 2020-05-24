@@ -20,8 +20,13 @@ namespace StatauIrPristatau.Controllers.Admin
                         db.userAccount.Add(account);
                         db.SaveChanges();
                         ModelState.Clear();
+                    return View("~/Views/Shared/MainView.cshtml", db.userAccount.ToList());
                 }
-                return View("~/Views/Shared/MainView.cshtml", db.userAccount.ToList());
+                else
+                {
+                    return View("~/Views/Admin/RegistrationScreen.cshtml");
+                }
+                
 
             }
 

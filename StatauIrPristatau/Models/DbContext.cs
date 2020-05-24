@@ -9,5 +9,7 @@ namespace StatauIrPristatau.Models
     public class SIPDbContext : DbContext
     {
         public DbSet<User> userAccount { get; set; }
+        public DbSet<Order> orders { get; set; }
+        public DbSet<Parcel> parcels { get; set; }
     }
 }
