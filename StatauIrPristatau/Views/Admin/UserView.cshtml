@@ -71,7 +71,7 @@
             <div class="mt-4 text-center">
                 @Html.ActionLink("Redaguoti", "Edit", "MainAdmin", new { id = Model.Id }, new { @class = "btn", @style = "background-color: #c0392b; color: white;" })
                 @Html.ActionLink("Ištrinti", "Delete", "MainAdmin", new { id = Model.Id }, new { @class = "btn ml-4", @style = "background-color: #c0392b; color: white;" })
-                @Html.ActionLink("Sugrižti į sąrašą", "ToMainView", "MainAdmin", new { id = Model.Id })
+                @Html.ActionLink("Sugrižti į sąrašą", "ToMainView", "MainAdmin", new { id = Model.Id }, new { @class = "ml-4" })
             </div>
         </div>
     </div>

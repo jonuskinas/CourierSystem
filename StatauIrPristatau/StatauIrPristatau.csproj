@@ -298,6 +298,7 @@
     <Content Include="Views\User\OrderView.cshtml" />
     <Content Include="Views\Customer\ShipmentsView.cshtml" />
     <Content Include="Views\Customer\addParcelView.cshtml" />
+    <Content Include="Views\Customer\Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,14 +22,17 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav" style="margin-left: auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         @Html.ActionLink("Naudotojų sąrašas", "ToMainView", "MainAdmin", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         @Html.ActionLink("Užsakymų istorija", "openOrderHistory", "MainUser", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         @Html.ActionLink("Vykdomi užsakymai", "openOrderedShipments", "Customer", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Žemėlapis", "openMap", "Customer", null, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#">Atsijungti</a>
