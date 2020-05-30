@@ -20,6 +20,51 @@ namespace StatauIrPristatau.Controllers.Customer
             }
         }
 
+        public ActionResult openMap()
+        {
+            using (SIPDbContext db = new SIPDbContext())
+            {
+                var results = db.orders.Where(o => o.State != 3).Include(o => o.Parcels);
+                return View("~/Views/Customer/Map.cshtml", results.ToList());
+            }
+        }
+
+        public JsonResult getPickUpAddress()
+        {
+            using (SIPDbContext db = new SIPDbContext())
+            {
+                string[] currentOrder = new string[50];
+
+                int k = 0;
+
+                foreach (Parcel parcel in db.parcels)
+                {
+                    currentOrder[k] = parcel.Pickup_Address;
+                    k++;
+                }
+
+                return Json(currentOrder, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult getDeliveryAddress()
+        {
+            using (SIPDbContext db = new SIPDbContext())
+            {
+                string[] currentOrder = new string[50];
+
+                int k = 0;
+
+                foreach (Parcel parcel in db.parcels)
+                {
+                    currentOrder[k] = parcel.DeliveryAddress;
+                    k++;
+                }
+
+                return Json(currentOrder, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult openNewOrder()
         {
             using (SIPDbContext db = new SIPDbContext())
@@ -33,8 +78,6 @@ namespace StatauIrPristatau.Controllers.Customer
                 db.SaveChanges();
                 ModelState.Clear();
                 return View("~/Views/Customer/OrderShipmentView.cshtml", order);
-
-
             }
 
         }
