@@ -1,10 +1,8 @@
-﻿
+﻿@model IEnumerable<StatauIrPristatau.Models.Ranking>
+<!DOCTYPE html>
+<html>
+
 <head>
-
-
-    @{
-        ViewBag.Title = "MainView";
-    }
     <link rel="stylesheet" type="text/css" href="~/Content/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Statau ir pristatau</title>
@@ -17,12 +15,8 @@
         }
     </style>
 </head>
-
 <body>
 
-    @if (Session["UserId"] != null)
-    {
-        @model IEnumerable<StatauIrPristatau.Models.User>
     <div>
         <div style="width: 100%">
             <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #c0392b">
@@ -53,10 +47,7 @@
         </div>
         <div class="container mt-5">
             <div>
-                <h3>Naudotojų sąrašas</h3>
-            </div>
-            <div>
-                @Html.ActionLink("Sukurti naują naudotoją", "Registration", "MainAdmin", null, new { @class = "btn px-4 py-2 mb-4 mt-2", @style = "background-color: #c0392b; color: white;" })
+                <h3>Kurjerių sąrašas</h3>
             </div>
             <table class="table">
                 <thead>
@@ -71,15 +62,17 @@
                 <tbody>
                     @{
                         int i = 0;
-                        foreach (var item in Model)
+                        foreach (var rank in Model)
                         {
-                            <tr>
-                                <th scope="row">@i</th>
-                                <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Surname)</td>
-                                <td>@Html.ActionLink("Peržiūrėti", "Details", "MainAdmin", new { id = item.Id }, null)</td>
-                            </tr>
+                          
+                    <tr>
+                        <th scope="row">@i</th>
+                        <td>@Html.DisplayFor(modelItem => rank.Overall)</td>
+                        <td>@Html.DisplayFor(modelItem => rank.Comment)</td>
+                        <td>@Html.DisplayFor(modelItem => rank.ParcelQuality)</td>
+                        <td> <a class="btn" style="background-color: #c0392b; color: white;" data-toggle="modal" data-target="#confirmEdit">Ivertinti</a> </td>
+                    </tr>
+
                             i++;
                         }
 
@@ -90,9 +83,7 @@
             </table>
         </div>
     </div>
-}
+    
 
 </body>
-
-
 

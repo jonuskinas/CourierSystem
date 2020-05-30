@@ -10,6 +10,22 @@ namespace StatauIrPristatau.Controllers.Customer
 {
     public class CustomerController : Controller
     {
+
+        public ActionResult openCourierRatings()
+        {
+
+                using (SIPDbContext db = new SIPDbContext())
+                {
+                    var results = db.ranking.Include(o => o.Userss);
+                    return View("~/Views/Customer/CourierRatingsView.cshtml", results.ToList());
+                }
+
+
+        }
+        public ActionResult openRatingsPop()
+        {
+            return null;
+        }
         // GET: Customer
         public ActionResult openOrderedShipments()
         {
