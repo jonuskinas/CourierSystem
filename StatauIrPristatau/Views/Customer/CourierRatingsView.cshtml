@@ -1,4 +1,4 @@
-﻿@model IEnumerable<StatauIrPristatau.Models.Ranking>
+﻿@model IEnumerable<StatauIrPristatau.Models.User>
 <!DOCTYPE html>
 <html>
 
@@ -55,38 +55,76 @@
             <div>
                 <h3>Kurjerių sąrašas</h3>
             </div>
+
+            @using (Html.BeginForm())
+    {
+        <p>
+            FiltriukasPagalEmail: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+}
             <table class="table">
                 <thead>
                     <tr style="background-color: #c0392b">
                         <th scope="col">#</th>
                         <th scope="col">El. Paštas</th>
-                        <th scope="col">Vardas</th>
-                        <th scope="col">Pavardė</th>
-                        <th scope="col">Veiksmai</th>
+                        <th scope="col">Bendras Užsakymo Vertinimas</th>
+                        <th scope="col">Kurjerio požiūris</th>
+                        <th scope="col">Siuntinio kokybė</th>
+                        <th scope="col">Pristatymo greitis</th>
                     </tr>
                 </thead>
                 <tbody>
                     @{
-                        int i = 1;
-                        foreach (var rank in Model)
-                        {
-                            i++;
+        int i = 0;
+        foreach (var user in Model)
+        {
+            i++;
+            int u = 0;
+            double sum = 0;
+            double average = 0;
+            double sum1 = 0;
+            double average1 = 0;
+            double sum2 = 0;
+            double average2 = 0;
+            double sum3 = 0;
+            double average3 = 0;
+                <tr>
+                    <th scope="row">@i</th>
+                    <td>@Html.DisplayFor(userItem => user.Email)</td>
 
-                            foreach (var user in rank.Userss)
-                            {
-                                <tr>
-                                    <th scope="row">@i</th>
-                                    <td>@Html.DisplayFor(userItem => user.Email)</td>
-                                    <td>@Html.DisplayFor(userItem => user.Name)</td>
-                                    <td>@Html.DisplayFor(userItem => rank.ParcelQuality)</td>
-                                    <td> <a class="btn" style="background-color: #c0392b; color: white;" data-toggle="modal" data-target="#confirmEdit">Ivertinti</a> </td>
-                                </tr>
-                            }
-                        }
+                    @{foreach (var ranks in user.Rankings)
 
+        {
+            if (user.Rankings != null)
+            {
+                u++;
 
+                double a = ranks.Overall;
+                sum = sum + a;
+                double b = ranks.CourierRanking;
+                sum1 = sum1 + b;
+                double c = ranks.ParcelQuality;
+                sum2 = sum2 + c;
+                double d = ranks.DeliveryTime;
+                sum3 = sum3 + d;
+            }
+        }
                     }
+                    @{ average = sum / u;}
+                    @{ average1 = sum1 / u;}
+                    @{ average2 = sum2 / u;}
+                    @{ average3 = sum3 / u;}
+                    <td>@Html.DisplayFor(userItem => average)</td>
+                    <td>@Html.DisplayFor(userItem => average1)</td>
+                    <td>@Html.DisplayFor(userItem => average2)</td>
+                    <td>@Html.DisplayFor(userItem => average3)</td>
+                </tr>
+}
+                    }
+                    @Html.ActionLink("Sukurti naują vertinimą", "openRatingsPop", "Customer", null, new { @class = "btn px-4 py-2 mb-4 mt-2", @style = "background-color: #c0392b; color: white;" })
 
+                 
 
 
                 </tbody>
@@ -97,11 +135,3 @@
 
 
 </body>
-
-
-
-
-
-
-
-
