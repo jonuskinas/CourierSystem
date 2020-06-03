@@ -1,7 +1,9 @@
-﻿using StatauIrPristatau.Models;
+﻿using Microsoft.Ajax.Utilities;
+using StatauIrPristatau.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,28 +12,84 @@ namespace StatauIrPristatau.Controllers.Customer
 {
     public class CustomerController : Controller
     {
-        public ActionResult openCourierRatings()
+        public ActionResult openCourierRatings(string searchString)
         {
-
+            
             using (SIPDbContext db = new SIPDbContext())
             {
-                var results = db.ranking.Include(o => o.Userss);
-                return View("~/Views/Customer/CourierRatingsView.cshtml", results.ToList());
+                if (!String.IsNullOrEmpty(searchString))
+                {
+
+                    var results = db.userAccount.Include(o => o.Rankings).Where(s => s.Email.Contains(searchString));
+                  
+                        
+                    return View("~/Views/Customer/CourierRatingsView.cshtml", results.ToList());
+                    
+                }
+                else
+                {
+                    var results = db.userAccount.Include(o => o.Rankings);
+                    return View("~/Views/Customer/CourierRatingsView.cshtml", results.ToList());
+                }
+
+             
+         
             }
 
 
         }
+        [Route("openRatingsPop")]
         public ActionResult openRatingsPop()
         {
-            return null;
+            PopulateDepartmentsDropDownList();
+            return View("~/Views/Customer/openRatingsPop.cshtml");
         }
-        // GET: Customer
-        public ActionResult openOrderedShipments()
+        [HttpPost]
+        public ActionResult openRatingsPop(Ranking ranking)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    using (SIPDbContext db = new SIPDbContext())
+                    {
+                        db.rankings.Add(ranking);
+                        db.SaveChanges();
+                        ModelState.Clear();
+                        var results = db.userAccount.Include(o => o.Rankings);
+                        return View("~/Views/Customer/CourierRatingsView.cshtml", results.ToList());
+                    }
+                }
+                else
+                {
+                    return View("~/Views/Customer/openRatingsPop.cshtml");
+                }
+            }
+            catch (RetryLimitExceededException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.)
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+            }
+            PopulateDepartmentsDropDownList(ranking.DepartmentID);
+            return View("~/Views/Customer/openRatingsPop.cshtml");
+        }
+            // GET: Customer
+            public ActionResult openOrderedShipments()
         {
             using (SIPDbContext db = new SIPDbContext())
             {
                 var results = db.orders.Where(o => o.State != 3).Include(o => o.Parcels);
                 return View("~/Views/Customer/ShipmentsView.cshtml", results.ToList());
+            }
+        }
+        private void PopulateDepartmentsDropDownList(object selectedDepartment = null)
+        {
+            using (SIPDbContext db = new SIPDbContext())
+            {
+                var departmentsQuery = from d in db.userAccount
+                                       orderby d.Email
+                                       select d;
+                ViewBag.DepartmentID = new SelectList(departmentsQuery, "DepartmentID", "Email", selectedDepartment);
             }
         }
 

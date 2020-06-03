@@ -41,7 +41,7 @@ namespace StatauIrPristatau.Models
         [DisplayName("Adresas")]
         [Required(ErrorMessage = "Adresas būtinas!")]
         public string Address { get; set; }
-
-        
+        public virtual ICollection<Ranking> Rankings { get; set; }
+       
     }
 }

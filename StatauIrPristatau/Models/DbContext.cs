@@ -11,6 +11,6 @@ namespace StatauIrPristatau.Models
         public DbSet<User> userAccount { get; set; }
         public DbSet<Order> orders { get; set; }
         public DbSet<Parcel> parcels { get; set; }
-        public DbSet<Ranking> ranking { get; set; }
+        public DbSet<Ranking> rankings { get; set; }
     }
 }
